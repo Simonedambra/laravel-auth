@@ -5,14 +5,14 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('project.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('project.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('project.show');
     }
 
     /**
@@ -44,7 +44,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('project.edit');
     }
 
     /**
