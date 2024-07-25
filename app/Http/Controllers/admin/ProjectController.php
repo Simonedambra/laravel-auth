@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Projects;
+use App\Models\Project;
 
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects= Projects::all();
+        $projects= Project::all();
         return view('project.index',compact("projects"));
     }
 
@@ -37,17 +37,21 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        return view('project.show');
+        $projects = Project::all();
+        $containsProject = $projects->contains($project);
+        
+        return view('project.show', compact('project', 'containsProject'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        return view('project.edit');
+        return view('project.edit',compact("project"));
     }
 
     /**

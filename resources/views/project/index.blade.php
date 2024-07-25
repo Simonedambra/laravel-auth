@@ -28,8 +28,8 @@
                 <thead>
                     <tr>
                         <th scope="col" class="col">#</th>
-                        <th scope="col" class="col-7">Title</th>
-                        <th scope="col" class="col">Slug</th>
+                        <th scope="col" class="col-7">name</th>
+                        <th scope="col" class="col">skills</th>
                         <th scope="col" class="col-2 text-right"></th>
                     </tr>
                 </thead>
@@ -40,12 +40,16 @@
                         <tr>
                             <th scope="row">{{ $project->id }}</th>
                             <td>
-                                @if ($project->cover_image)
+                                @if ($project->img)
                                     <a href="#" class="btn btn-sm btn-secondary me-3"><i
                                             class="fa-solid fa-image"></i></a>
-                                @endif{{ $project->title }}
+                                @endif{{ $project->name . ' ' }}{{ $project->surname }}
                             </td>
-                            <td>{{ $project->slug }}</td>
+                            <td>
+                                @foreach ($project->skills as $skill)
+                                    {{ $skill }}
+                                @endforeach
+                            </td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-end">
                                     <a href="{{ route('admin.Project.show', $project) }}" as="button"
