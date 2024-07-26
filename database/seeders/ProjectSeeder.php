@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 class ProjectSeeder extends Seeder
 {
@@ -20,15 +21,17 @@ class ProjectSeeder extends Seeder
         for($i=1;$i<=10;$i++){
         $project= new Project();
         
-        $project->name=$faker->firstNameMale();
 
-        $project->surname=$faker->lastName();
+        $project->title=$faker->sentence(3);
 
         $project->img=$faker->imageUrl(640, 480, 'animals', true);;
 
         $project->skills=$faker->words();
 
+        $project->slug=Str::of($project->title)->slug('-');
+
         $project->save();
+        
         }
     }
 }
