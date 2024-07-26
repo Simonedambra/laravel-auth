@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 
 use Illuminate\Http\Request;
@@ -62,17 +63,16 @@ $project->img = $img_path;
 
 //$project->fill($data);
 $project->save();
-dd($project);
+return redirect()->route('admin.Projects.index')->with('message', 'Progetto creato con successo!');
        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(project $project)
+    public function show(Project $project)
 {
     
-   
     return view('project.show', compact('project'));
 }
 
@@ -87,16 +87,43 @@ dd($project);
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProjectRequest $request, project $project)
     {
-        //
+        $data = $request->validated();
+
+
+        //gestione slug
+        $data['slug'] = Str::of($data['title'])->slug();
+        //gestione immagine
+
+
+        $img_path = $request->hasFile('img') ? Storage::put('uploads', $data['img']) : NULL;
+
+        // $img_path = $request->hasFile('cover_image') ? $request->cover_image->store('uploads') : NULL;
+
+
+        $project->title = $data['title'];
+
+        $project->slug = $data['slug'];
+        $project->img = $img_path;
+
+
+        //$project->fill($data);
+        $project->save();
+                    
+        return redirect()->route('admin.Projects.index')->with('message'.' - Post aggiornato correttamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(project $project)
+    //public function destroy(string $id)
     {
-        //
+        // $pasta = Pasta::findOrFail($id);
+
+        $project->delete();
+
+        return redirect()->route('admin.Projects.index');
     }
 }

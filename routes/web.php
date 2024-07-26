@@ -26,7 +26,7 @@ Route::middleware('auth', 'verified')
 ->group(function(){
 Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
-    Route::resource('Project', ProjectController::class)->parameters([
+    Route::resource('Projects', ProjectController::class)->parameters([
         'Projects'=>'project:slug',
     ]);
 });

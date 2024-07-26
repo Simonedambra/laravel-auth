@@ -7,30 +7,28 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h1>Crea un nuovo post</h1>
                 <div class="d-flex gap-2">
-                    <a href="{{ route('admin.Project.index') }}" class="btn btn-primary" as="button">Torna alla lista</a>
+                    <a href="{{ route('admin.Projects.index') }}" class="btn btn-primary" as="button">Torna alla lista</a>
                 </div>
             </div>
 
         </div>
         @include('shared.errors')
-        <form action="{{ route('admin.Project.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.Projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="post-title" class="form-label">Titolo del post</label>
+                <label for="project-title" class="form-label">Titolo del post</label>
                 <input type="text" class="form-control" id="post-title" name="title" value="{{ old('title') }}">
             </div>
-            <div class="mb-3">
-                <label for="post-content" class="form-label">Contenuto del post</label>
-                <textarea class="form-control" id="post-content" rows="5" name="content">{{ old('content') }}</textarea>
-            </div>
+
 
             <div class="mb-3">
-                <label for="post-content" class="form-label">Categoria del post - {{ old('project_id') }}</label>
-                <select class="form-select" aria-label="Default select example" name="project_id">
+                <label for="project-skills" class="form-label">Categoria del post - {{ old('skills') }}</label>
+                <select class="form-select" aria-label="Default select example" name="skills">
                     <option value="">Seleziona Categoria</option>
                     @foreach ($projects as $project)
-                        <option value="{{ $project->id }}" @if (old('project_id') == $project->id) selected @endif>
-                            {{ $project->name }}</option>
+                        {{-- @foreach ($project->skills as $skill)
+                            {{ dd($skill) }}
+                        @endforeach --}}
                     @endforeach
 
                 </select>

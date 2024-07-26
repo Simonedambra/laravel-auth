@@ -15,7 +15,7 @@
                         @endif
 
                         {{ __('You are logged in!') }}
-                        <a href="{{ route('admin.Project.index') }}">vai hai progetti</a>
+                        <a href="{{ route('admin.Projects.index') }}">vai hai progetti</a>
 
                     </div>
                 </div>

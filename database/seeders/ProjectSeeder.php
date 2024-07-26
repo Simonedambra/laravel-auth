@@ -26,7 +26,7 @@ class ProjectSeeder extends Seeder
 
         $project->img=$faker->imageUrl(640, 480, 'animals', true);;
 
-        $project->skills=$faker->words();
+        
 
         $project->slug=Str::of($project->title)->slug('-');
 

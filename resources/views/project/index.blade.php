@@ -7,7 +7,7 @@
             <div class=" d-flex justify-content-between align-items-center">
                 <h1>Lista dei posts</h1>
                 <div class="d-flex gap-2">
-                    <a href="{{ route('admin.Project.create') }}" class="btn btn-primary" as="button">Crea nuovo</a>
+                    <a href="{{ route('admin.Projects.create') }}" class="btn btn-primary" as="button">Crea nuovo</a>
                 </div>
 
             </div>
@@ -46,19 +46,20 @@
                                 @endif
                                 {{ $project->title }}
 
+
                             <td>
-                                @foreach ($project->skills as $skill)
+                                {{-- @foreach ($project->skills as $skill)
                                     {{ $skill }}
-                                @endforeach
+                                @endforeach --}}
                             </td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-end">
-                                    <a href="{{ route('admin.Project.show', $project) }}" as="button"
+                                    <a href="{{ route('admin.Projects.show', $project) }}" as="button"
                                         class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
-                                    <a href="{{ route('admin.Project.edit', $project) }}" as="button"
+                                    <a href="{{ route('admin.Projects.edit', $project) }}" as="button"
                                         class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></a>
 
-                                    <form action="{{ route('admin.Project.destroy', $project) }}" method="POST">
+                                    <form action="{{ route('admin.Projects.destroy', $project) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
