@@ -35,47 +35,43 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        
         $data = $request->validated();
 
-        // dd($request->all());
+
+//gestione slug
+$data['slug'] = Str::of($data['title'])->slug();
+//gestione immagine
 
 
+$img_path = $request->hasFile('img') ? Storage::put('uploads', $data['img']) : NULL;
 
-        //gestione slug
-        $data['slug'] = Str::of($data['title'])->slug();
-        //gestione immagine
-
-
-        $img_path = $request->hasFile('img') ? Storage::put('uploads', $data['img']) : NULL;
-
-        // $img_path = $request->hasFile('cover_image') ? $request->cover_image->store('uploads') : NULL;
+// $img_path = $request->hasFile('cover_image') ? $request->cover_image->store('uploads') : NULL;
 
 
 
 
 
-        $Project = new Project();
+$project = new Project();
 
-        $Project->name = $data['name'];
-        $Project->surname = $data['surname'];
-        $Project->img = $img_path;
-        $Project->skills = $data['skills'];
-        //$Project->category_id = $request->input('category_id'); //99
-        $Project->project_id = $data['project_id']; //99
+$project->title = $data['title'];
 
-        //$Project->fill($data);
-        $Project->save();
+$project->slug = $data['slug'];
+$project->img = $img_path;
 
 
-        return redirect()->route('admin.posts.index')->with('message', 'Articolo creato correttamente');
+//$project->fill($data);
+$project->save();
+dd($project);
+       
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $slug)
+    public function show(project $project)
 {
-    $project = Project::where('slug', $slug)->first();
+    
    
     return view('project.show', compact('project'));
 }

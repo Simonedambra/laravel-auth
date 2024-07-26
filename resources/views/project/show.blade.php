@@ -6,19 +6,19 @@
 
         <div class="header-page  pb-2 mb-4">
             <div class=" d-flex justify-content-between align-items-center">
-                <h1>{{ $project->title }}</h1>
+                <h1>{{ $project }}</h1>
                 <div class="d-flex gap-2">
-                    <a href="{{ route('admin.Project.index') }}" class="btn btn-primary" as="button">Torna alla lista</a>
-                    <a href="{{ route('admin.Project.edit', $project->id) }}" class="btn btn-primary"
-                        as="button">Modifica</a>
+                    <a href="{{ route('admin.Project.index', $project) }}" class="btn btn-primary" as="button">Torna alla
+                        lista</a>
+                    {{-- <a href="{{ route('admin.Project.edit', $project->slag) }}" class="btn btn-primary"
+                        as="button">Modifica</a> --}}
                 </div>
             </div>
         </div>
 
         <p>
-            @foreach ($project->skills as $skill)
-                {{ $skill . ' ' }}
-            @endforeach
+
+
         </p>
 
         <hr>

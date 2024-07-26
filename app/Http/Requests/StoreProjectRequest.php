@@ -22,10 +22,10 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|unique:table,project,project,id',
-            'img'=> 'nullable',
-            'skills'=> 'nullable',
-            'slug'=> 'required|unique:table,project,project,id',
+            'title' => 'required|unique:projects,title',
+        'img' => 'nullable',
+        'skills' => 'nullable',
+        'slug' => 'nullable|unique:projects,slug',
             
         ];
     }

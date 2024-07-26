@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
-    protected $table='projects';
+    
+    protected $table = 'projects';
     protected $casts = [
         'skills' => 'array',
     ];
